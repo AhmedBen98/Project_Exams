@@ -1,0 +1,20 @@
+**Avis global :**
+Le rapport d'évaluation de l'examen montre que les compétences sont globalement bien couvertes, avec un taux de couverture de 83,3%. Cependant, il existe des déséquilibres dans la répartition des niveaux de Bloom et une compétence importante n'est pas abordée.
+
+**Points forts :**
+
+1. **Couverture des compétences** : L'examen couvre la majorité des compétences attendues, ce qui est un point positif.
+2. **Diversité des questions** : Les questions sont réparties sur différents niveaux de Bloom, même si certains niveaux sont sous-représentés.
+
+**Points faibles :**
+
+1. **Compétence non couverte** : La compétence 6, relative à l'analyse de l'efficacité des algorithmes, n'est pas abordée, ce qui est un manque important.
+2. **Déséquilibre dans la répartition des niveaux de Bloom** : Les questions de compréhension sont trop nombreuses, tandis que les questions d'évaluation, de synthèse et d'analyse sont sous-représentées.
+3. **Absence de questions d'analyse** : Il n'y a aucune question qui nécessite une analyse approfondie, ce qui est un niveau de Bloom important pour évaluer les compétences des étudiants.
+
+**Recommandations concrètes :**
+
+1. **Intégrer la compétence 6** : Ajouter des questions qui évaluent la capacité des étudiants à analyser l'efficacité des algorithmes et à comparer différentes approches.
+2. **Rééquilibrer la répartition des niveaux de Bloom** : Augmenter le nombre de questions d'évaluation, de synthèse et d'analyse pour offrir une évaluation plus complète des compétences des étudiants.
+3. **Créer des questions d'analyse** : Développer des questions qui nécessitent une analyse approfondie et une réflexion critique pour évaluer les compétences des étudiants de manière plus exhaustive.
+4. **Réviser l'examen** : Réviser l'examen pour s'assurer qu'il est équilibré, complet et qu'il évalue les compétences attendues de manière adéquate.

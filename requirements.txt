@@ -1,0 +1,14 @@
+
+# Backend dependencies
+fastapi
+uvicorn
+fastapi-users[sqlalchemy]
+sqlalchemy
+python-jose
+passlib[bcrypt]
+email-validator
+pdfplumber
+requests
+httpx
+python-multipart
+pydantic

@@ -1,0 +1,116 @@
+Question : 1. À nombre de neurones équivalent, quel type de couche conduit au nombre le plus important de paramètres ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Compréhension
+
+Question : 2. Parmi ces propositions, quelle est celle qui permet de lutter le plus efficacement contre l'explosion du gradient pouvant apparaître lors de l'apprentissage des réseaux récurrents ?
+  -> Compétence : 4. Implement RNNs and transformers for sequence modeling tasks, such as NLP applications.
+  -> Niveau Bloom : Compréhension
+
+Question : 3. Quelle proposition correspond à l'une des portes de contrôle d'une cellule LSTM ?
+  -> Compétence : 4. Implement RNNs and transformers for sequence modeling tasks, such as NLP applications.
+  -> Niveau Bloom : Connaissance
+
+Question : 4. Quels sont les trois modes de fonctionnement d'un réseau de neurones récurrent ?
+  -> Compétence : 4. Implement RNNs and transformers for sequence modeling tasks, such as NLP applications.
+  -> Niveau Bloom : Connaissance
+
+Question : 5. Lequel des types de RNN suivants est le meilleur pour l’analyse des sentiments :
+  -> Compétence : 4. Implement RNNs and transformers for sequence modeling tasks, such as NLP applications.
+  -> Niveau Bloom : Compréhension
+
+Question : 6. Pour un problème de reconnaissance d’image (reconnaître un chat sur une photo), quelle architecture de réseau de neurones serait la mieux adaptée pour résoudre le problème ?
+  -> Compétence : 3. Apply CNNs to solve image-related tasks, such as classification and object detection.
+  -> Niveau Bloom : Compréhension
+
+Question : 7. Laquelle des propositions suivantes est une méthode de réglage hyperparamètres dans un réseau de neurones ?
+  -> Compétence : 2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
+  -> Niveau Bloom : Connaissance
+
+Question : 8. Quel est le type d’apprentissage automatique qui convient à notre étude de cas ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Compréhension
+
+Question : 9. Quelles sont les avantages des réseaux de neurones artificiels (ANN) par rapport aux techniques de Machine Learning simples ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Compréhension
+
+Question : 10. Est ce que les techniques de Deep Learning sont toujours plus performantes que celles du Machine Learning ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Évaluation
+
+Question : 11. Est ce que notre problème peut être résolu par les algorithmes classiques de Machine Learning ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Évaluation
+
+Question : 12. Expliquer le fonctionnement d’un neurone.
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Compréhension
+
+Question : 13. A quoi consiste le Forward Propagation ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Compréhension
+
+Question : 14. Quelle est la différence entre Loss (perte) et Cost (coût) ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Compréhension
+
+Question : 15. Donner un exemple de fonction Loss qu’on peut utiliser pour notre étude de cas.
+  -> Compétence : 2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
+  -> Niveau Bloom : Application
+
+Question : 16. A quoi sert le Backward Propagation ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Compréhension
+
+Question : 17. Expliciter le fonctionnement de l’algorithme de la descente du gradient ?
+  -> Compétence : 1. Understand and explain deep learning concepts, architectures, and frameworks.
+  -> Niveau Bloom : Compréhension
+
+Question : 18. Quel est le nombre de cellules à prévoir pour la couche Input ?
+  -> Compétence : 2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
+  -> Niveau Bloom : Application
+
+Question : 19. Quel est le nombre de cellules à prévoir pour la couche Output ?
+  -> Compétence : 2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
+  -> Niveau Bloom : Application
+
+Question : 20. Préciser le nombre de paramètres à entraîner dans chaque couche (y compris la couche Input et la couche Output)
+  -> Compétence : 2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
+  -> Niveau Bloom : Application
+
+Question : 21. Expliquer les deux notions du biais et de la variance.
+  -> Compétence : 5. Evaluate deep learning models using appropriate metrics and improve them through optimization techniques.
+  -> Niveau Bloom : Compréhension
+
+Question : 22. Parmi les deux termes, quel est le terme qu’on associe au sur-apprentissage ?
+  -> Compétence : 5. Evaluate deep learning models using appropriate metrics and improve them through optimization techniques.
+  -> Niveau Bloom : Compréhension
+
+Question : 23. Quelles sont les solutions qu’on peut appliquer pour remédier à cette chute de performance entre les deux datasets (entrainement et test) ?
+  -> Compétence : 5. Evaluate deep learning models using appropriate metrics and improve them through optimization techniques.
+  -> Niveau Bloom : Synthèse
+
+Question : 24. Expliquer brièvement le concept des réseaux CNN.
+  -> Compétence : 3. Apply CNNs to solve image-related tasks, such as classification and object detection.
+  -> Niveau Bloom : Compréhension
+
+Question : 25. Expliquer les deux hyper-paramètres : Padding et Stride.
+  -> Compétence : 3. Apply CNNs to solve image-related tasks, such as classification and object detection.
+  -> Niveau Bloom : Compréhension
+
+Question : 26. Quelles sont les valeurs par défaut du Padding et du Stride dans une couche de convolution ?
+  -> Compétence : 3. Apply CNNs to solve image-related tasks, such as classification and object detection.
+  -> Niveau Bloom : Connaissance
+
+Question : 27. Quelles sont les valeurs par défaut du Padding et du Stride dans une couche de Max_pooling ?
+  -> Compétence : 3. Apply CNNs to solve image-related tasks, such as classification and object detection.
+  -> Niveau Bloom : Connaissance
+
+Question : 28. Calculer le nombre de paramètres à entraîner dans chaque couche
+  -> Compétence : 2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
+  -> Niveau Bloom : Application
+
+Question : 29. Préciser l’input et l’output de chaque couche.
+  -> Compétence : 2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
+  -> Niveau Bloom : Application
+
