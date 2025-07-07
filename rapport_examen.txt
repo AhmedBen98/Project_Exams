@@ -1,27 +1,26 @@
-# Rapport d'évaluation de l'examen
+Taux de couvrance des CLO : 40.0% (4/10)
+CLO couverts :
+  - Mettre en place les procédures algorithmiques vues en classe
+  - Comparer les différentes méthodes numériques étudiées dans chaque chapitre
+  - Résoudre numériquement certaines équations différentielles ordinaires
+  - Résoudre numériquement certaines équations non-linéaires
+CLO non couverts :
+  - Appliquer quelques méthodes numériques pour approcher la valeur d'une intégrale
+  - Argumenter le choix de la méthode à appliquer dans chaque chapitre
+  - Reconnaître quelques méthodes de l’approximation d’une fonction d’expression inconnue par un polynôme
+  - Calculer numériquement la dérivée d’une fonction
+  - Analyser graphiquement les résultats obtenus
+  - Mémoriser les méthodes numériques pour la résolution des systèmes d'équations linéaires d'ordre élevé
 
-## Taux de couvrance des CLO
+Répartition des niveaux de Bloom :
+  Application : 6 question(s) (54.5%)
+  Connaissance : 2 question(s) (18.2%)
+  Compréhension : 2 question(s) (18.2%)
+  Analyse : 1 question(s) (9.1%)
 
-- Taux de couvrance des CLO : 83.3% (5/6)
-- CLO couverts :
-  - 2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
-  - 4. Implement RNNs and transformers for sequence modeling tasks, such as NLP applications.
-  - 3. Apply CNNs to solve image-related tasks, such as classification and object detection.
-  - 5. Evaluate deep learning models using appropriate metrics and improve them through optimization techniques.
-  - 1. Understand and explain deep learning concepts, architectures, and frameworks.
-- CLO non couverts :
-  - 6. Analyse algorithm efficiency and compare different approaches.
+---
 
-## Répartition des niveaux de Bloom
+**Résumé pédagogique (Taxonomie de Bloom) :**
 
-- Compréhension : 15 question(s) (51.7%)
-- Connaissance : 5 question(s) (17.2%)
-- Application : 6 question(s) (20.7%)
-- Évaluation : 2 question(s) (6.9%)
-- Synthèse : 1 question(s) (3.4%)
-
-## Analyse qualitative
-
-- L’examen couvre la majorité des compétences, mais la compétence 6 n’est pas abordée.
-- La majorité des questions relèvent de la compréhension, peu de questions d’évaluation, de synthèse, et aucune d’analyse.
-- Pour un meilleur équilibre, il serait pertinent d’ajouter des questions d’analyse et de renforcer la présence de la compétence 6.
+L’examen exploite la taxonomie de Bloom pour évaluer différents niveaux cognitifs chez les étudiants. La majorité des questions relèvent de la compréhension (2/11), ce qui permet de vérifier l’assimilation des concepts fondamentaux. Des questions d’application (6) permettent de tester la capacité à utiliser les connaissances dans des situations concrètes. Des questions de connaissance (2) vérifient la mémorisation et la restitution des savoirs. 
+En résumé, l’examen est solide sur la couverture des compétences et permet d’évaluer plusieurs niveaux de la taxonomie de Bloom, mais gagnerait à renforcer les niveaux supérieurs (synthèse, évaluation) pour une évaluation pleinement équilibrée et exigeante.

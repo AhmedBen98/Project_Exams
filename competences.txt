@@ -1,6 +1,6 @@
-1. Understand and explain deep learning concepts, architectures, and frameworks.
-2. Build, train, and fine-tune neural network models using TensorFlow or PyTorch.
-3. Apply CNNs to solve image-related tasks, such as classification and object detection.
-4. Implement RNNs and transformers for sequence modeling tasks, such as NLP applications.
-5. Evaluate deep learning models using appropriate metrics and improve them through optimization techniques.
-6. Analyse algorithm efficiency and compare different approaches.
+1. Comprendre et expliquer les concepts, les architectures et les frameworks de deep learning.
+2. Construire, entraîner et affiner des modèles de réseaux de neurones à l'aide de TensorFlow ou PyTorch.
+3. Appliquer les CNN pour résoudre des tâches liées aux images, telles que la classification et la détection d'objets.
+4. Mettre en œuvre des RNN et des transformateurs pour des tâches de modélisation de séquences, telles que les applications de NLP.
+5. Évaluer les modèles de deep learning à l'aide de métriques appropriées et les améliorer grâce à des techniques d'optimisation.
+6. Analyser l'efficacité des algorithmes et comparer différentes approches.

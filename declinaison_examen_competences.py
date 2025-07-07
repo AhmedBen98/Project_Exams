@@ -72,13 +72,15 @@ def _parse_bloc_llm(bloc):
     for line in bloc.strip().split("\n"):
         if line.lower().startswith("question"):
             bloc_dict["question"] = line.split(":",1)[-1].strip()
-        elif line.lower().startswith("compétence"):
-            bloc_dict["competence"] = line.split(":",1)[-1].strip()
+        elif line.lower().startswith("compétence") or line.lower().startswith("compétences"):
+            comp_str = line.split(":",1)[-1].strip()
+            comps = [c.strip() for c in comp_str.split(",") if c.strip()]
+            bloc_dict["competences"] = comps if comps else ["Non trouvée"]
         elif line.lower().startswith("niveau bloom"):
             bloc_dict["niveau_bloom"] = line.split(":",1)[-1].strip()
     if "question" in bloc_dict:
-        if "competence" not in bloc_dict:
-            bloc_dict["competence"] = "Non trouvée"
+        if "competences" not in bloc_dict:
+            bloc_dict["competences"] = ["Non trouvée"]
         if "niveau_bloom" not in bloc_dict:
             bloc_dict["niveau_bloom"] = "Inconnu"
         return bloc_dict
@@ -90,8 +92,9 @@ def _associer_questions_llm(questions, liste_competences):
     """
     prompt = (
         "Voici une liste de questions d'examen et une liste de compétences (CLO). "
-        "Pour chaque question, associe la compétence la plus pertinente (ou 'Non trouvée' si aucune) et indique le niveau de la taxonomie de Bloom (connaissance, compréhension, application, analyse, synthèse, évaluation). "
-        "Réponds sous la forme :\n---\nQuestion : ...\nCompétence : ...\nNiveau Bloom : ...\n---\n\nQuestions :\n" + "\n".join(questions) + "\n\nCompétences :\n" + "\n".join(liste_competences)
+        "Pour chaque question, associe toutes les compétences pertinentes (CLO) – pas seulement la meilleure – et indique le niveau de la taxonomie de Bloom (connaissance, compréhension, application, analyse, synthèse, évaluation). "
+        "Si plusieurs compétences sont pertinentes, liste-les séparées par une virgule. "
+        "Réponds sous la forme :\n---\nQuestion : ...\nCompétences : ...\nNiveau Bloom : ...\n---\n\nQuestions :\n" + "\n".join(questions) + "\n\nCompétences :\n" + "\n".join(liste_competences)
     )
     associations = []
     try:
@@ -150,10 +153,14 @@ if __name__ == "__main__":
     associations = associer_questions_competences(fichier_examen, liste_competences, use_llm=True)
     with open(output_file, "w", encoding="utf-8") as out:
         for assoc in associations:
-            if not all(k in assoc for k in ("question", "competence", "niveau_bloom")):
+            question = assoc.get("question", "[Question manquante]")
+            competences = assoc.get("competences") or [assoc.get("competence", "Non trouvée")]
+            niveau_bloom = assoc.get("niveau_bloom", "Inconnu")
+            if not question or not competences or not niveau_bloom:
                 out.write(f"[ERREUR] Association mal formée : {assoc}\n\n")
                 continue
-            out.write(f"Question : {assoc['question']}\n")
-            out.write(f"  -> Compétence : {assoc['competence']}\n")
-            out.write(f"  -> Niveau Bloom : {assoc['niveau_bloom']}\n\n")
+            out.write(f"Question : {question}\n")
+            for comp in competences:
+                out.write(f"  -> Compétence : {comp}\n")
+            out.write(f"  -> Niveau Bloom : {niveau_bloom}\n\n")
     print(f"Résultat écrit dans {output_file}")
