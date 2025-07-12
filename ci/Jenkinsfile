@@ -4,6 +4,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
         NEXUS_URL = 'http://localhost:8081'
         NEXUS_REPO = 'docker-releases'
+        NEXUS_CREDENTIALS = 'nexus-creds'
     }
     stages {
         stage('Checkout') {
@@ -32,7 +33,7 @@ pipeline {
         stage('Push to Nexus') {
             steps {
                 script {
-                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", DOCKERHUB_CREDENTIALS) {
+                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", NEXUS_CREDENTIALS) {
                         docker.image("backend-exams:${env.BUILD_NUMBER}").push()
                         docker.image("frontproj:${env.BUILD_NUMBER}").push()
                     }
