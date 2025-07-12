@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build Backend') {
             steps {
-                dir('Project_Exams/backend-exams') {
+                dir('backend-exams') {
                     script {
                         dockerImage = docker.build("backend-exams:${env.BUILD_NUMBER}")
                     }
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Build Frontend') {
             steps {
-                dir('Project_Exams/frontproj') {
+                dir('frontproj') {
                     script {
                         dockerImage = docker.build("frontproj:${env.BUILD_NUMBER}")
                     }
