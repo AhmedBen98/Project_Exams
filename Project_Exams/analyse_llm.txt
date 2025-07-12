@@ -1,0 +1,20 @@
+**Avis global :**
+Le rapport d'évaluation de l'examen universitaire montre des points forts, mais également des points faibles qui nécessitent des améliorations. Le taux de couverture des compétences (40%) est relativement faible, et la répartition des niveaux de Bloom montre une dominance de l'application et de la connaissance, avec une sous-représentation des niveaux supérieurs tels que l'analyse, la synthèse et l'évaluation.
+
+**Points forts :**
+
+1. L'examen couvre certaines compétences clés, telles que la mise en place de procédures algorithmiques et la résolution numérique d'équations différentielles ordinaires.
+2. La répartition des niveaux de Bloom montre une présence de questions d'application, de connaissance et de compréhension, ce qui permet d'évaluer différents aspects des connaissances des étudiants.
+
+**Points faibles :**
+
+1. Le taux de couverture des compétences est faible (40%), ce qui signifie que de nombreuses compétences importantes ne sont pas évaluées.
+2. Les niveaux supérieurs de la taxonomie de Bloom (synthèse, évaluation) sont sous-représentés, ce qui limite la capacité de l'examen à évaluer la pensée critique et la capacité à résoudre des problèmes complexes.
+3. Certaines compétences clés, telles que l'application de méthodes numériques pour approcher la valeur d'une intégrale et l'analyse graphique des résultats, ne sont pas couvertes.
+
+**Recommandations concrètes :**
+
+1. **Élargir la couverture des compétences** : réviser l'examen pour inclure des questions qui couvrent les compétences non évaluées, telles que l'application de méthodes numériques pour approcher la valeur d'une intégrale et l'analyse graphique des résultats.
+2. **Intégrer des questions de niveaux supérieurs** : ajouter des questions qui évaluent les niveaux supérieurs de la taxonomie de Bloom, tels que la synthèse et l'évaluation, pour encourager la pensée critique et la capacité à résoudre des problèmes complexes.
+3. **Rééquilibrer la répartition des niveaux de Bloom** : ajuster la répartition des questions pour garantir que tous les niveaux de la taxonomie de Bloom soient représentés de manière équilibrée.
+4. **Réviser les questions pour garantir leur pertinence et leur difficulté** : s'assurer que les questions sont pertinentes pour les objectifs de l'examen et qu'elles sont suffisamment difficiles pour évaluer les connaissances et les compétences des étudiants.

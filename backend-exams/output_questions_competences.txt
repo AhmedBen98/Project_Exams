@@ -1,0 +1,48 @@
+Question : Établir l’algorithme de Runge-Kutta 4.
+  -> Compétence : Résoudre numériquement certaines équations différentielles ordinaires
+  -> Compétence : Mettre en place les procédures algorithmiques vues en classe
+  -> Niveau Bloom : Application
+
+Question : Donner la condition d’existence et d’unicité de la solution du problème de Cauchy (1.1).
+  -> Compétence : Résoudre numériquement certaines équations différentielles ordinaires
+  -> Niveau Bloom : Connaissance
+
+Question : Les méthodes Runge-Kutta 4 sont à un pas et par conséquent moins précises que les méthodes à pas multiples.
+  -> Compétence : Comparer les différentes méthodes numériques étudiées dans chaque chapitre
+  -> Niveau Bloom : Évaluation
+
+Question : Soit à résoudre le système d’EDO suivant :
+  -> Compétence : Résoudre numériquement certaines équations différentielles ordinaires
+  -> Niveau Bloom : Application
+
+Question : On considère l’EDO d’ordre m avec condition initiale :
+  -> Compétence : Résoudre numériquement certaines équations différentielles ordinaires
+  -> Niveau Bloom : Compréhension
+
+Question : Résoudre l’EDO d’ordre 4 suivante en utilisant une méthode de prédiction-correction d’ordre 2.
+  -> Compétence : Résoudre numériquement certaines équations différentielles ordinaires
+  -> Compétence : Mettre en place les procédures algorithmiques vues en classe
+  -> Niveau Bloom : Application
+
+Question : En utilisant le schéma implicite, résoudre l’équation de la chaleur se propageant sur une surface rectangulaire.
+  -> Compétence : Résoudre numériquement certaines équations différentielles ordinaires
+  -> Compétence : Mettre en place les procédures algorithmiques vues en classe
+  -> Niveau Bloom : Application
+
+Question : Donner les conditions d’optimalité en maximisation.
+  -> Compétence : Résoudre numériquement certaines équations non-linéaires
+  -> Niveau Bloom : Connaissance
+
+Question : Montrer que si f est convexe, alors ∀(x,y) ∈ E×E, t(y−x)∇f(x) ≤ f(y)−f(x).
+  -> Compétence : Résoudre numériquement certaines équations non-linéaires
+  -> Niveau Bloom : Analyse
+
+Question : Établir l’expression de α k si f est une fonction quadratique.
+  -> Compétence : Résoudre numériquement certaines équations non-linéaires
+  -> Niveau Bloom : Application
+
+Question : Établir l’expression de p k pour l’algorithme de Newton.
+  -> Compétence : Résoudre numériquement certaines équations non-linéaires
+  -> Compétence : Mettre en place les procédures algorithmiques vues en classe
+  -> Niveau Bloom : Application
+
