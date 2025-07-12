@@ -35,10 +35,12 @@ pipeline {
 
         stage('Push to Nexus') {
             steps {
-                script {
-                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", [username: 'admin', password: 'Admin@2025']) {
-                        docker.image("backend-exams:${env.BUILD_NUMBER}").push()
-                        docker.image("frontproj:${env.BUILD_NUMBER}").push()
+                withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    script {
+                        docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", "${USERNAME}:${PASSWORD}") {
+                            docker.image("backend-exams:${env.BUILD_NUMBER}").push()
+                            docker.image("frontproj:${env.BUILD_NUMBER}").push()
+                        }
                     }
                 }
             }
