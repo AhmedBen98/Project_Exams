@@ -1,6 +1,10 @@
-1. Comprendre et expliquer les concepts, les architectures et les frameworks de l'apprentissage profond.
-2. Construire, entraîner et affiner des modèles de réseaux de neurones à l'aide de TensorFlow ou PyTorch.
-3. Appliquer les CNN pour résoudre des tâches liées aux images, telles que la classification et la détection d'objets.
-4. Mettre en œuvre des RNN et des transformateurs pour des tâches de modélisation de séquences, telles que les applications de traitement automatique des langues.
-5. Évaluer les modèles d'apprentissage profond à l'aide de métriques appropriées et les améliorer à l'aide de techniques d'optimisation.
-6. Analyser l'efficacité des algorithmes et comparer différentes approches.
+Mémoriser les méthodes numériques pour la résolution des systèmes d'équations linéaires d'ordre élevé
+Reconnaître quelques méthodes de l’approximation d’une fonction d’expression inconnue par un polynôme
+Appliquer quelques méthodes numériques pour approcher la valeur d'une intégrale
+Résoudre numériquement certaines équations non-linéaires
+Calculer numériquement la dérivée d’une fonction
+Résoudre numériquement certaines équations différentielles ordinaires
+Analyser graphiquement les résultats obtenus
+Mettre en place les procédures algorithmiques vues en classe
+Comparer les différentes méthodes numériques étudiées dans chaque chapitre
+Argumenter le choix de la méthode à appliquer dans chaque chapitre

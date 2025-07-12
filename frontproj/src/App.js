@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import UserAnalyses from "./components/UserAnalyses";
 import AdminDashboard from "./components/AdminDashboard";
 import { getUser } from "./api";
-
+import "./style.css";
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(getUser());

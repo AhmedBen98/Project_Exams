@@ -1,3 +1,4 @@
+// src/components/AnalyseBox.jsx
 import React, { useState, useEffect } from "react";
 import SyllabusUpload from "./SyllabusUpload";
 import ExamUpload from "./ExamUpload";
@@ -18,8 +19,12 @@ export default function AnalyseBox({ token, user, isAdmin }) {
   // Charger les syllabus/exam pour le user (ou tous si admin)
   useEffect(() => {
     getAnalyses().then(list => {
-      setSyllabusList(list.filter(a => a.type === "syllabus" && (!user || isAdmin || a.userId === user.id)));
-      setExamList(list.filter(a => a.type === "exam" && (!user || isAdmin || a.userId === user.id)));
+      setSyllabusList(
+        list.filter(a => a.type === "syllabus" && (!user || isAdmin || a.userId === user.id))
+      );
+      setExamList(
+        list.filter(a => a.type === "exam" && (!user || isAdmin || a.userId === user.id) && a.result && Array.isArray(a.result) && a.result.length > 0)
+      );
     });
   }, [user, isAdmin]);
 
@@ -43,7 +48,9 @@ export default function AnalyseBox({ token, user, isAdmin }) {
       setExam(res.questions || []);
       // Reload exam list
       const analyses = await getAnalyses();
-      setExamList(analyses.filter(a => a.type === "exam" && (!user || isAdmin || a.userId === user.id)));
+      setExamList(
+        analyses.filter(a => a.type === "exam" && (!user || isAdmin || a.userId === user.id) && a.result && Array.isArray(a.result) && a.result.length > 0)
+      );
     } catch (e) {
       setError(e.message);
     } finally { setLoading(false); }

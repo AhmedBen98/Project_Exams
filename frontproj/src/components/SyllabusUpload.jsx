@@ -21,12 +21,12 @@ export default function SyllabusUpload({ token }) {
   };
 
   function fixUtf8(str) {
-  try {
-    return decodeURIComponent(escape(str));
-  } catch {
-    return str;
+    try {
+      return decodeURIComponent(escape(str));
+    } catch {
+      return str;
+    }
   }
-}
   return (
     <div>
       <b>1. Extraire les compétences (CLO) du syllabus</b>
@@ -37,7 +37,9 @@ export default function SyllabusUpload({ token }) {
           style={{ minWidth: 150 }}
           disabled={!file || loading}
           onClick={handleUpload}
-        >Extraire CLO</button>
+        >
+          Extraire CLO
+        </button>
       </div>
       {Array.isArray(out) && (
         <ul style={{ marginTop: 10 }}>

@@ -19,7 +19,7 @@ export default function Report({ report }) {
         <b>CLO non couverts :</b> {report.clo_non_couverts?.length}
         {report.clo_non_couverts && report.clo_non_couverts.length > 0 && (
           <ul>
-            {report.clo_non_couverts.map((c, i) => <li key={i}>{fixUtf8(c)}</li>)}
+            {report.clo_non_couverts.map((c, i) => <li key={fixUtf8(i)}>{fixUtf8(c)}</li>)}
           </ul>
         )}
       </div>
