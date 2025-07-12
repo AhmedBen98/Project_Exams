@@ -1,21 +1,20 @@
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+// src/middlewares/auth.js
 
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+const jwt = require("jsonwebtoken");
+const User = require("../models/user");
+
+exports.authenticateToken = async (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  if (!authHeader) return res.sendStatus(401);
+  const token = authHeader.split(" ")[1];
   if (!token) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "jwt_secret");
+    req.user = await User.findByPk(decoded.id);
+    if (!req.user) return res.sendStatus(403);
     next();
-  });
-}
-
-function isAdmin(req, res, next) {
-  if (req.user.role !== 'admin') return res.sendStatus(403);
-  next();
-}
-
-module.exports = { authenticateToken, isAdmin };
+  } catch {
+    return res.sendStatus(403);
+  }
+};

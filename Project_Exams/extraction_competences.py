@@ -4,8 +4,11 @@ Entrée : fichier PDF ou texte décrivant le module
 Sortie : liste des compétences extraites
 """
 
-import sys
 import json
+import sys
+import io
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 def extraire_texte_pdf(fichier_module):
     """
     Extrait le texte de toutes les pages d'un fichier PDF.

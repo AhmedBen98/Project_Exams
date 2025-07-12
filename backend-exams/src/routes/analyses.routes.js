@@ -12,7 +12,7 @@ const fs = require("fs");
 const upload = multer({ dest: "uploads/" }); // dossier temporaire pour fichiers
 
 // GET all analyses (admin: tout, user: seulement les siennes)
-router.get("/", async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   try {
     const where = req.user.role === 'admin' ? {} : { userId: req.user.id };
     const all = await Analysis.findAll({
@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one analysis
-router.get("/:id", async (req, res) => {
+router.get("/:id", authenticateToken, async (req, res) => {
   try {
     const analysis = await Analysis.findByPk(req.params.id, {
       include: [{ model: User, attributes: ["id", "name", "email"] }]
@@ -42,7 +42,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // DELETE one analysis (admin ou owner)
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateToken, async (req, res) => {
   try {
     const analysis = await Analysis.findByPk(req.params.id);
     if (!analysis || (req.user.role !== 'admin' && analysis.userId !== req.user.id)) {
@@ -56,8 +56,13 @@ router.delete("/:id", async (req, res) => {
 });
 
 // Extraction CLO du syllabus (UPLOAD UN PDF)
-router.post("/syllabus", upload.single("file"), async (req, res) => {
+// Extraction CLO du syllabus (UPLOAD UN PDF)
+router.post("/syllabus", authenticateToken, upload.single("file"), async (req, res) => {
   try {
+    process.stdout.setEncoding('utf8');
+    process.stdin.setEncoding('utf8');
+
+    if (!req.file) return res.status(400).json({ error: "Aucun fichier envoyé" });
     const filePath = req.file.path;
     const pythonProcess = spawn("python", [
       path.join(__dirname, "../../../Project_Exams/extraction_competences.py"),
@@ -69,6 +74,7 @@ router.post("/syllabus", upload.single("file"), async (req, res) => {
     pythonProcess.on("close", async (code) => {
       fs.unlinkSync(filePath);
       try {
+        // Garde uniquement la dernière ligne (json)
         const lines = output.trim().split('\n');
         const last = lines[lines.length - 1];
         const result = JSON.parse(last);
@@ -89,7 +95,7 @@ router.post("/syllabus", upload.single("file"), async (req, res) => {
 });
 
 // Extraction questions examen (UPLOAD UN PDF examen)
-router.post("/exam", upload.single("file"), async (req, res) => {
+router.post("/exam", authenticateToken, upload.single("file"), async (req, res) => {
   try {
     // Cherche le dernier syllabus (compétences CLO) de l'utilisateur
     const lastSyllabus = await Analysis.findOne({
@@ -137,7 +143,7 @@ router.post("/exam", upload.single("file"), async (req, res) => {
 });
 
 // Analyse croisée : reçoit syllabusId et examId choisis par l'utilisateur
-router.post("/analyze", async (req, res) => {
+router.post("/analyze", authenticateToken, async (req, res) => {
   try {
     const { syllabusId, examId } = req.body;
     if (!syllabusId || !examId) {
@@ -150,33 +156,21 @@ router.post("/analyze", async (req, res) => {
       return res.status(404).json({ error: "Syllabus ou Examen non trouvé" });
     }
 
-    // Fichier temporaire CLO
-    const cloPath = `uploads/clo_tmp_${syllabusId}.txt`;
-    fs.writeFileSync(cloPath, syllabus.result.join("\n"), "utf-8");
+    // Prépare les data pour Python
+    const data = {
+      clo: syllabus.result,                // Array de CLO
+      questions: exam.result               // Array d’objets { question, competences, niveau_bloom }
+    };
 
-    // Fichier temporaire questions
-    const questionsPath = `uploads/questions_tmp_${examId}.txt`;
-    fs.writeFileSync(questionsPath, exam.result.map(q => {
-      const question = q.question || "";
-      let comp = "";
-      if (Array.isArray(q.competences)) comp = q.competences.join(", ");
-      else if (q.competence) comp = q.competence;
-      else comp = "Non trouvée";
-      const niveau = q.niveau_bloom || "Inconnu";
-      return `Question : ${question}\n-> Compétence : ${comp}\n-> Niveau Bloom : ${niveau}\n`;
-    }).join("\n"), "utf-8");
-
-    // Appelle le script Python
+    // Lance Python en mode "analyse correspondance en stdin"
     const pythonProcess = spawn("python", [
       path.join(__dirname, "../../../Project_Exams/eval_examen.py"),
-      questionsPath, cloPath
+      "--json"  // Flag pour mode JSON direct
     ]);
     let output = "";
     pythonProcess.stdout.on("data", (data) => { output += data.toString(); });
     pythonProcess.stderr.on("data", (data) => { console.error(`PYTHON stderr: ${data}`); });
     pythonProcess.on("close", async (code) => {
-      fs.unlinkSync(cloPath);
-      fs.unlinkSync(questionsPath);
       try {
         const lines = output.trim().split('\n');
         const last = lines[lines.length - 1];
@@ -192,6 +186,9 @@ router.post("/analyze", async (req, res) => {
         res.status(500).json({ error: "Erreur parsing Python output", raw: output });
       }
     });
+    // Envoie les données au script Python via stdin
+    pythonProcess.stdin.write(JSON.stringify(data));
+    pythonProcess.stdin.end();
   } catch (err) {
     res.status(500).json({ error: "Erreur serveur", details: err.message });
   }

@@ -1,8 +1,6 @@
-This course covers the following BA Program Learning Outcomes:
-Course Learning Outcomes (CLOs):
-CLO# CLO Description Linked to PLO#
-CLO Assessment Scheme:
-CLO# (30%) Final Exam
-# to CLO#
-use must be governed by ethical and responsible principles. Students are required to disclose any use of generative AI in their academic work,
-providing specific details about the nature and extent of the assistance received from the AI tool. This disclosure should be included in the
+1. Comprendre et expliquer les concepts, les architectures et les frameworks de deep learning.
+2. Construire, entraîner et affiner des modèles de réseaux de neurones à l'aide de TensorFlow ou PyTorch.
+3. Appliquer les CNN pour résoudre des tâches liées aux images, telles que la classification et la détection d'objets.
+4. Mettre en œuvre des RNN et des transformateurs pour des tâches de modélisation de séquences, telles que les applications de traitement automatique des langues.
+5. Évaluer les modèles de deep learning à l'aide de métriques appropriées et les améliorer grâce à des techniques d'optimisation.
+6. Analyser l'efficacité des algorithmes et comparer différentes approches.

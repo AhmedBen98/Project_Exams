@@ -1,10 +1,11 @@
+// src/models/analysis.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('./sequelize');
 const User = require('./user');
 
 const Analysis = sequelize.define('Analysis', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  type: { type: DataTypes.ENUM('exam', 'syllabus'), allowNull: false },
+  type: { type: DataTypes.ENUM('exam', 'syllabus', 'analyze'), allowNull: false },
   filename: { type: DataTypes.STRING },
   result: { type: DataTypes.JSON }, // Résultat de l'analyse
   createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }

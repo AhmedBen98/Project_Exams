@@ -57,7 +57,7 @@ router.delete("/:id", authenticateToken, async (req, res) => {
 });
 
 // Extraction CLO du syllabus (UPLOAD UN PDF)
-router.post("/syllabus", authenticateToken, upload.single("file"), async (req, res) => {
+router.post("/syllabus", upload.single("file"), async (req, res) => {
   try {
     const filePath = req.file.path;
     const pythonProcess = spawn("python", [
@@ -88,6 +88,7 @@ router.post("/syllabus", authenticateToken, upload.single("file"), async (req, r
     res.status(500).json({ error: "Erreur serveur", details: err.message });
   }
 });
+
 
 // Extraction questions examen (UPLOAD UN PDF examen)
 router.post("/exam", authenticateToken, upload.single("file"), async (req, res) => {
