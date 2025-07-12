@@ -1,11 +1,10 @@
 pipeline {
     agent any
     environment {
-        // Hardcoded credentials (NOT RECOMMENDED)
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
         NEXUS_URL = 'http://localhost:8081'
         NEXUS_REPO = 'docker-releases'
-        NEXUS_USER = 'admin'              // Hardcoded username
-        NEXUS_PASS = 'Admin@2025'        // Hardcoded password
+        NEXUS_CREDENTIALS = credentials('nexus-creds')
     }
     stages {
         stage('Checkout') {
@@ -17,7 +16,7 @@ pipeline {
             steps {
                 dir('backend-exams') {
                     script {
-                        dockerImageBackend = docker.build("backend-exams:latest")
+                        dockerImage = docker.build("backend-exams:latest")
                     }
                 }
             }
@@ -26,7 +25,7 @@ pipeline {
             steps {
                 dir('frontproj') {
                     script {
-                        dockerImageFrontend = docker.build("frontproj:latest")
+                        dockerImage = docker.build("frontproj:latest")
                     }
                 }
             }
@@ -34,10 +33,9 @@ pipeline {
         stage('Push to Nexus') {
             steps {
                 script {
-                    // Using hardcoded credentials in registry URL
-                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", "${NEXUS_USER}:${NEXUS_PASS}") {
-                        dockerImageBackend.push()
-                        dockerImageFrontend.push()
+                    docker.withRegistry("http://localhost:8081/repository/docker-releases/", NEXUS_CREDENTIALS) {
+                        docker.image("backend-exams:latest").push()
+                        docker.image("frontproj:latest").push()
                     }
                 }
             }
