@@ -1,46 +1,40 @@
 pipeline {
     agent any
-
     environment {
-        // Optionally set build number or tag if needed
-        IMAGE_TAG = "${env.BUILD_NUMBER ?: 'latest'}"
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        NEXUS_URL = 'http://172.20.10.2:8081'
+        NEXUS_REPO = 'docker-releases'
     }
-
     stages {
-        stage('Checkout SCM') {
+        stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'master', url: 'https://github.com/AhmedBen98/Project_Exams'
             }
         }
-
         stage('Build Backend') {
             steps {
-                dir('backend-exams') {
+                dir('Project_Exams/backend-exams') {
                     script {
-                        bat "docker build -t backend-exams:${IMAGE_TAG} ."
+                        dockerImage = docker.build("backend-exams:${env.BUILD_NUMBER}")
                     }
                 }
             }
         }
-
         stage('Build Frontend') {
             steps {
-                dir('frontproj') {
+                dir('Project_Exams/frontproj') {
                     script {
-                        bat "docker build -t frontproj:${IMAGE_TAG} ."
+                        dockerImage = docker.build("frontproj:${env.BUILD_NUMBER}")
                     }
                 }
             }
         }
-
         stage('Push to Nexus') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'admin', passwordVariable: 'Admin@2025')]) {
-                    script {
-                        docker.withRegistry("http://172.20.10.2:8081/repository/docker-releases", "${USERNAME}:${PASSWORD}") {
-                            docker.image("backend-exams:${IMAGE_TAG}").push()
-                            docker.image("frontproj:${IMAGE_TAG}").push()
-                        }
+                script {
+                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", DOCKERHUB_CREDENTIALS) {
+                        docker.image("backend-exams:${env.BUILD_NUMBER}").push()
+                        docker.image("frontproj:${env.BUILD_NUMBER}").push()
                     }
                 }
             }
