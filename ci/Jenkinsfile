@@ -1,10 +1,11 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        // Hardcoded credentials (NOT RECOMMENDED)
         NEXUS_URL = 'http://localhost:8081'
         NEXUS_REPO = 'docker-releases'
-        NEXUS_CREDENTIALS = credentials('nexus-creds')  // Added credentials() function
+        NEXUS_USER = 'admin'              // Hardcoded username
+        NEXUS_PASS = 'Admin@2025'        // Hardcoded password
     }
     stages {
         stage('Checkout') {
@@ -33,12 +34,10 @@ pipeline {
         stage('Push to Nexus') {
             steps {
                 script {
-                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", "${NEXUS_CREDENTIALS}") {
+                    // Using hardcoded credentials in registry URL
+                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", "${NEXUS_USER}:${NEXUS_PASS}") {
                         dockerImageBackend.push()
                         dockerImageFrontend.push()
-                        // Also push with build number if needed
-                        dockerImageBackend.push("${env.BUILD_NUMBER}")
-                        dockerImageFrontend.push("${env.BUILD_NUMBER}")
                     }
                 }
             }
