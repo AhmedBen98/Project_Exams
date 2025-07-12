@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: examsdb
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend-exams
+    restart: always
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=examsdb
+      - DB_PORT=5432
+      - DB_SSL=true
+      - JWT_SECRET =your_jwt_secret
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend-exams:/app
+      - ./Project_Exams:/app/Project_Exams
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontproj
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  pg_data:

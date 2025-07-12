@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        NEXUS_URL = 'http://172.20.10.2:8081'
+        NEXUS_REPO = 'docker-releases'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/AhmedBen98/Project_Exams'
+            }
+        }
+        stage('Build Backend') {
+            steps {
+                dir('Project_Exams/backend-exams') {
+                    script {
+                        dockerImage = docker.build("backend-exams:${env.BUILD_NUMBER}")
+                    }
+                }
+            }
+        }
+        stage('Build Frontend') {
+            steps {
+                dir('Project_Exams/frontproj') {
+                    script {
+                        dockerImage = docker.build("frontproj:${env.BUILD_NUMBER}")
+                    }
+                }
+            }
+        }
+        stage('Push to Nexus') {
+            steps {
+                script {
+                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", DOCKERHUB_CREDENTIALS) {
+                        docker.image("backend-exams:${env.BUILD_NUMBER}").push()
+                        docker.image("frontproj:${env.BUILD_NUMBER}").push()
+                    }
+                }
+            }
+        }
+    }
+}
