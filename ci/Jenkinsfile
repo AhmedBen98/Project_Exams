@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-        NEXUS_URL = 'http://172.20.10.2:8081'
+        NEXUS_URL = 'http://localhost:8081'
         NEXUS_REPO = 'docker-releases'
     }
     stages {
