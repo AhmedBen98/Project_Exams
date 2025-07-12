@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        NEXUS_URL = 'http://172.20.10.2:8081'
-        NEXUS_REPO = 'docker-releases'
+        // Optionally set build number or tag if needed
+        IMAGE_TAG = "${env.BUILD_NUMBER ?: 'latest'}"
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout SCM') {
             steps {
-                git branch: 'master', url: 'https://github.com/AhmedBen98/Project_Exams'
+                checkout scm
             }
         }
 
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 dir('backend-exams') {
                     script {
-                        dockerImage = docker.build("backend-exams:${env.BUILD_NUMBER}")
+                        bat "docker build -t backend-exams:${IMAGE_TAG} ."
                     }
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 dir('frontproj') {
                     script {
-                        dockerImage = docker.build("frontproj:${env.BUILD_NUMBER}")
+                        bat "docker build -t frontproj:${IMAGE_TAG} ."
                     }
                 }
             }
@@ -37,9 +37,9 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'admin', passwordVariable: 'Admin@2025')]) {
                     script {
-                        docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", "${USERNAME}:${PASSWORD}") {
-                            docker.image("backend-exams:${env.BUILD_NUMBER}").push()
-                            docker.image("frontproj:${env.BUILD_NUMBER}").push()
+                        docker.withRegistry("http://172.20.10.2:8081/repository/docker-releases", "${USERNAME}:${PASSWORD}") {
+                            docker.image("backend-exams:${IMAGE_TAG}").push()
+                            docker.image("frontproj:${IMAGE_TAG}").push()
                         }
                     }
                 }
