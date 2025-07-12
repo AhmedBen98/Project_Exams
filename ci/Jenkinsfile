@@ -4,7 +4,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
         NEXUS_URL = 'http://localhost:8081'
         NEXUS_REPO = 'docker-releases'
-        NEXUS_CREDENTIALS = 'nexus-creds'
+        NEXUS_CREDENTIALS = credentials('nexus-creds')  // Added credentials() function
     }
     stages {
         stage('Checkout') {
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 dir('backend-exams') {
                     script {
-                        dockerImage = docker.build("backend-exams:${env.BUILD_NUMBER}")
+                        dockerImageBackend = docker.build("backend-exams:latest")
                     }
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 dir('frontproj') {
                     script {
-                        dockerImage = docker.build("frontproj:${env.BUILD_NUMBER}")
+                        dockerImageFrontend = docker.build("frontproj:latest")
                     }
                 }
             }
@@ -33,9 +33,12 @@ pipeline {
         stage('Push to Nexus') {
             steps {
                 script {
-                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", NEXUS_CREDENTIALS) {
-                        docker.image("backend-exams:${env.BUILD_NUMBER}").push()
-                        docker.image("frontproj:${env.BUILD_NUMBER}").push()
+                    docker.withRegistry("${NEXUS_URL}/repository/${NEXUS_REPO}", "${NEXUS_CREDENTIALS}") {
+                        dockerImageBackend.push()
+                        dockerImageFrontend.push()
+                        // Also push with build number if needed
+                        dockerImageBackend.push("${env.BUILD_NUMBER}")
+                        dockerImageFrontend.push("${env.BUILD_NUMBER}")
                     }
                 }
             }
