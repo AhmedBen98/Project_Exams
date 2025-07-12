@@ -30,15 +30,15 @@ pipeline {
                 }
             }
         }
-        stage('Push to Nexus') {
-            steps {
-                script {
-                    docker.withRegistry("http://127.0.0.1:8081/repository/docker-releases/") {
-                        docker.image("backend-exams:latest").push()
-                        docker.image("frontproj:latest").push()
-                    }
-                }
-            }
-        }
+        // stage('Push to Nexus') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry("http://127.0.0.1:8081/repository/docker-releases/") {
+        //                 docker.image("backend-exams:latest").push()
+        //                 docker.image("frontproj:latest").push()
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
